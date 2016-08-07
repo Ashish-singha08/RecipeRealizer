@@ -2,6 +2,7 @@ package com.example.mikieandnicky.reciperealizer;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -28,8 +29,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_15 = "Ingredient13";
     public static final String COL_16 = "Ingredient14";
     public static final String COL_17 = "Ingredient15";
-
-
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -90,5 +89,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_17, in15);
         long result = db.insert(TABLE_NAME, null, contentValues);
         return (result != -1); // the result is not equal to -1, return true
+    }
+
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase(); // Open our database in a writable mode
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
+        return cursor;
     }
 }

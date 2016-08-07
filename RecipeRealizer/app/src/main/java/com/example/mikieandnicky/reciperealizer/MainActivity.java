@@ -1,6 +1,8 @@
 package com.example.mikieandnicky.reciperealizer;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDB;
     EditText eName, ei1, ei2, ei3, ei4, ei5, ei6, ei7, ei8, ei9, ei10, ei11, ei12, ei13, ei14, ei15;
     Button bSave;
+    Button bViewAll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
         ei14 = (EditText) findViewById(R.id.editText15);
         ei15 = (EditText) findViewById(R.id.editText16);
         bSave = (Button) findViewById(R.id.button_save);
+        bViewAll = (Button) findViewById(R.id.button_view);
         addRecipe();
+        viewAll();
     }
 
     public void addRecipe() {
@@ -55,6 +60,67 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public void viewAll () {
+        bViewAll.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Cursor cursor = myDB.getAllData();
+                                            if (cursor.getColumnCount()==0) {
+                                                showRecipe("Error: ", "Nothing Found");
+                                                return;
+                                            }
+                                            StringBuffer sbuffer = new StringBuffer();
+                                            while(cursor.moveToNext()){
+                                                sbuffer.append("\nID: " + cursor.getString(0)+"\n");
+                                                sbuffer.append("Recipe: " + cursor.getString(1)+"\n");
+                                                sbuffer.append("Ingredients: \n");
+                                                if (cursor.getString(2).length() > 1)
+                                                sbuffer.append(cursor.getString(2)+ "\n");
+                                                if (cursor.getString(3).length() > 1)
+                                                sbuffer.append(cursor.getString(3)+ "\n");
+                                                if (cursor.getString(4).length() > 1)
+                                                sbuffer.append(cursor.getString(4)+ "\n");
+                                                if (cursor.getString(5).length() > 1)
+                                                sbuffer.append(cursor.getString(5)+ "\n");
+                                                if (cursor.getString(6).length() > 1)
+                                                sbuffer.append(cursor.getString(6)+ "\n");
+                                                if (cursor.getString(7).length() > 1)
+                                                sbuffer.append(cursor.getString(7)+ "\n");
+                                                if (cursor.getString(8).length() > 1)
+                                                sbuffer.append(cursor.getString(8)+ "\n");
+                                                if (cursor.getString(9).length() > 1)
+                                                sbuffer.append(cursor.getString(9)+ "\n");
+                                                if (cursor.getString(10).length() > 1)
+                                                sbuffer.append(cursor.getString(10)+ "\n");
+                                                if (cursor.getString(11).length() > 1)
+                                                sbuffer.append(cursor.getString(11)+ "\n");
+                                                if (cursor.getString(12).length() > 1)
+                                                sbuffer.append(cursor.getString(12)+ "\n");
+                                                if (cursor.getString(13).length() > 1)
+                                                sbuffer.append(cursor.getString(13)+ "\n");
+                                                if (cursor.getString(14).length() > 1)
+                                                sbuffer.append(cursor.getString(14)+ "\n");
+                                                if (cursor.getString(15).length() > 1)
+                                                sbuffer.append(cursor.getString(15)+ "\n");
+                                                if (cursor.getString(16).length() > 1)
+                                                sbuffer.append(cursor.getString(16)+ "\n");
+                                            }
+                                            showRecipe(" Recipes ", sbuffer.toString());
+                                        }
+                                    }
+
+        );
+    }
+
+    public void showRecipe (String title, String recipe){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(recipe);
+        builder.show();
+
     }
 }
 
