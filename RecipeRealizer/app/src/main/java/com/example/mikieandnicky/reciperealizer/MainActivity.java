@@ -2,6 +2,7 @@ package com.example.mikieandnicky.reciperealizer;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button bSave;
     Button bViewAll;
     Button bUpdate;
+    Button bRemove;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +42,26 @@ public class MainActivity extends AppCompatActivity {
         bSave = (Button) findViewById(R.id.button_save);
         bViewAll = (Button) findViewById(R.id.button_view);
         bUpdate = (Button) findViewById(R.id.button_edit);
+        bRemove = (Button) findViewById(R.id.button_remove);
         addRecipe();
         viewAll();
         updateRecipeByID();
+        removeRecipe();
+    }
+    public void removeRecipe(){
+        bRemove.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick (View v) {
+                        Integer removedRecipe = myDB.removeRecipe(RId.getText().toString());
+                        if (removedRecipe > 0)
+                            Toast.makeText(MainActivity.this, "Recipe Removal Successful. \nRemoved: " +
+                                    RId.getText().toString() + "Recipe.", Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(MainActivity.this, "Recipe deletion FAILED", Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
     }
 
     public void updateRecipeByID () {

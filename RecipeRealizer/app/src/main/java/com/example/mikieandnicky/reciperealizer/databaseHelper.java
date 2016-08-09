@@ -123,4 +123,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(TABLE_NAME, contentValues, "ID = ?", new String [] {id.toString()});
         return true;
     }
+
+    public Integer removeRecipe (String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME,"ID = ?", new String[] {id});
+    }
 }

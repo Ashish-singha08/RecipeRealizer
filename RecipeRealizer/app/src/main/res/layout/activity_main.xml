@@ -360,7 +360,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ViewRecipes"
+        android:text="View Recipes"
         android:id="@+id/button_view"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -370,7 +370,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Click the button above to view a recipe or add a recipe by filling in the fields below and clicking save recipe the bottom."
+        android:text="View Recipe will show all the recipes and ID&apos;s. Edit requires and ID and Fields. Remove only requires you to enter an ID."
         android:id="@+id/textView17"
         android:layout_below="@+id/button_view"
         android:layout_alignParentLeft="true"
@@ -384,6 +384,15 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/button_view"
         android:layout_toEndOf="@+id/button_view" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove by ID"
+        android:id="@+id/button_remove"
+        android:layout_above="@+id/textView17"
+        android:layout_toRightOf="@+id/button_edit"
+        android:layout_toEndOf="@+id/button_edit" />
 
 </RelativeLayout>
 </ScrollView>
