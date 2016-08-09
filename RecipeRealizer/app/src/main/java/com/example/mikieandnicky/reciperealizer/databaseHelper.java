@@ -96,4 +96,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
         return cursor;
     }
+
+    public boolean updateRecipe(String id, String name, String in1, String in2, String in3, String in4,
+                                String in5, String in6, String in7, String in8, String in9,
+                                String in10, String in11, String in12, String in13, String in14,
+                                String in15) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues(); // Make a container to hold our values
+        contentValues.put(COL_1, id);
+        contentValues.put(COL_2, name);
+        contentValues.put(COL_3, in1);
+        contentValues.put(COL_4, in2);
+        contentValues.put(COL_5, in3);
+        contentValues.put(COL_6, in4);
+        contentValues.put(COL_7, in5);
+        contentValues.put(COL_8, in6);
+        contentValues.put(COL_9, in7);
+        contentValues.put(COL_10, in8);
+        contentValues.put(COL_11, in9);
+        contentValues.put(COL_12, in10);
+        contentValues.put(COL_13, in11);
+        contentValues.put(COL_14, in12);
+        contentValues.put(COL_15, in13);
+        contentValues.put(COL_16, in14);
+        contentValues.put(COL_17, in15);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String [] {id.toString()});
+        return true;
+    }
 }

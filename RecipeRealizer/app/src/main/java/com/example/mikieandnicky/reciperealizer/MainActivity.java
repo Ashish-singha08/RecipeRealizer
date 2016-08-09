@@ -11,15 +11,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDB;
-    EditText eName, ei1, ei2, ei3, ei4, ei5, ei6, ei7, ei8, ei9, ei10, ei11, ei12, ei13, ei14, ei15;
+    EditText eName, ei1, ei2, ei3, ei4, ei5, ei6, ei7, ei8, ei9, ei10, ei11, ei12, ei13, ei14, ei15, RId;
     Button bSave;
     Button bViewAll;
+    Button bUpdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDB = new DatabaseHelper(this);
-        eName = (EditText) findViewById(R.id.editText); //Adding pointers to edit fields
+        eName = (EditText) findViewById(R.id.editText18); //Adding pointers to edit fields
         ei1 = (EditText) findViewById(R.id.editText2);
         ei2 = (EditText) findViewById(R.id.editText3);
         ei3 = (EditText) findViewById(R.id.editText4);
@@ -35,10 +36,34 @@ public class MainActivity extends AppCompatActivity {
         ei13 = (EditText) findViewById(R.id.editText14);
         ei14 = (EditText) findViewById(R.id.editText15);
         ei15 = (EditText) findViewById(R.id.editText16);
+        RId = (EditText) findViewById(R.id.editText);
         bSave = (Button) findViewById(R.id.button_save);
         bViewAll = (Button) findViewById(R.id.button_view);
+        bUpdate = (Button) findViewById(R.id.button_edit);
         addRecipe();
         viewAll();
+        updateRecipeByID();
+    }
+
+    public void updateRecipeByID () {
+        bUpdate.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick (View v){
+                        boolean isUpdated = myDB.updateRecipe(RId.getText().toString(), eName.getText().toString(), ei1.getText().toString(),
+                                ei2.getText().toString(), ei3.getText().toString(),
+                                ei4.getText().toString(), ei5.getText().toString(),
+                                ei6.getText().toString(), ei7.getText().toString(),
+                                ei8.getText().toString(), ei9.getText().toString(),
+                                ei10.getText().toString(), ei11.getText().toString(),
+                                ei12.getText().toString(), ei13.getText().toString(),
+                                ei14.getText().toString(), ei15.getText().toString());
+                        if (isUpdated == true)
+                            Toast.makeText(MainActivity.this, "Recipe Update Successful", Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(MainActivity.this, "Recipe Update FAILED", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     public void addRecipe() {
