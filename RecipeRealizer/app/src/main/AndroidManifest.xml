@@ -17,5 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RemoveEdit"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".AddRecipe"
+            android:label="@string/app_name">
+        </activity>
+
+
     </application>
 </manifest>
