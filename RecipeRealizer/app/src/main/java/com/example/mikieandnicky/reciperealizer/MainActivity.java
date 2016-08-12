@@ -1,3 +1,4 @@
+// MIT License available at: https://github.com/HansenML/RecipeRealizer/blob/master/LICENSE
 package com.example.mikieandnicky.reciperealizer;
 
 import android.content.Intent;

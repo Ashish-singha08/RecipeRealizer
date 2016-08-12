@@ -1,3 +1,4 @@
+// MIT License available at: https://github.com/HansenML/RecipeRealizer/blob/master/LICENSE
 package com.example.mikieandnicky.reciperealizer;
 
 import android.content.ContentValues;
@@ -6,9 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Mikie and Nicky on 8/6/2016.
- */
 class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "recipes.db";
     public static final String TABLE_NAME = "recipes_table";
